@@ -4,6 +4,9 @@ import { useLocation, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';  
+import 'react-toastify/dist/ReactToastify.css';
 
 const Dashboard = () => {
   const { userId } = useParams();
@@ -29,9 +32,13 @@ const Dashboard = () => {
     try{
         
         //await axios.post(`http://localhost:4000/user/quiz/${location.state.id}`);
-        await axios.post(`https://quizy-ggoe.onrender.com/user/quiz/${location.state.id}`);
-        navigate('/quizpage',{state: {id : location.state.id }});
-        const elem = document.documentElement;
+        if(userData.startTime===""){
+          await axios.post(`https://quizy-ggoe.onrender.com/user/quiz/${location.state.id}`);
+          navigate('/quizpage',{state: {id : location.state.id }});
+        }
+        else{
+          toast.success("Quiz completed already!!!");
+        }
 
     
     } catch (error) {
@@ -83,6 +90,7 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
+    <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
     </div>
   );
 };
