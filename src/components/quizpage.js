@@ -26,9 +26,11 @@ const QuizPage = () => {
     const fetchQuizData = async () => {
       try {
         // Fetch quiz questions
-        const response = await axios.get(`http://localhost:4000/user/get/${location.state.id}`);
+        //const response = await axios.get(`http://localhost:4000/user/get/${location.state.id}`);
+        const response = await axios.get(`https://quizy-ggoe.onrender.com/user/get/${location.state.id}`);
         setuserData(response.data.endTime);
-        const quizResponse = await axios.get('http://localhost:4000/questions/get');
+        //const quizResponse = await axios.get('http://localhost:4000/questions/get');
+        const quizResponse = await axios.get('https://quizy-ggoe.onrender.com/questions/get');
         if(response.data.endTime === ""){
             setQuizzes(quizResponse.data);
         }
@@ -54,10 +56,12 @@ const QuizPage = () => {
   const calculateMarks = async () => {
     try {
       // Update end time
-      const endTimeResponse = await axios.post(`http://localhost:4000/user/et/${location.state.id}`);
+      //const endTimeResponse = await axios.post(`http://localhost:4000/user/et/${location.state.id}`);
+      const endTimeResponse = await axios.post(`https://quizy-ggoe.onrender.com/user/et/${location.state.id}`);
 
       // Fetch user data after updating end time
-      const userDataResponse = await axios.get(`http://localhost:4000/user/get/${location.state.id}`);
+      //const userDataResponse = await axios.get(`http://localhost:4000/user/get/${location.state.id}`);
+      const userDataResponse = await axios.get(`https://quizy-ggoe.onrender.com/user/get/${location.state.id}`);
 
       // Set start and end time
       setStartTime(userDataResponse.data.startTime);
@@ -96,7 +100,8 @@ const QuizPage = () => {
     const scored = (marks*100) - timeDifferenceInSeconds;
   
     const userId = location.state.id;
-    await axios.post(`http://localhost:4000/user/updateScore/${userId}`, {
+    //await axios.post(`http://localhost:4000/user/updateScore/${userId}`, {
+    await axios.post(`https://quizy-ggoe.onrender.com/user/updateScore/${userId}`, {
       score: scored,
       marks: marks,
     });

@@ -14,7 +14,8 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/user/get/${location.state.id}`);
+        //const response = await axios.get(`http://localhost:4000/user/get/${location.state.id}`);
+        const response = await axios.get(`https://quizy-ggoe.onrender.com/user/get/${location.state.id}`);
         setUserData(response.data);
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -27,7 +28,8 @@ const Dashboard = () => {
   const handleStartQuiz = async () => {
     try{
         
-        await axios.post(`http://localhost:4000/user/quiz/${location.state.id}`);
+        //await axios.post(`http://localhost:4000/user/quiz/${location.state.id}`);
+        await axios.post(`https://quizy-ggoe.onrender.com/user/quiz/${location.state.id}`);
         navigate('/quizpage',{state: {id : location.state.id }});
         const elem = document.documentElement;
 

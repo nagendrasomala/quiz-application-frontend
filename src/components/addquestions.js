@@ -17,7 +17,8 @@ const AddQuestionPage = () => {
 
   const addQuestion = async () => {
     try {
-      const response = await fetch('http://localhost:4000/questions/add', {
+      //const response = await fetch('http://localhost:4000/questions/add', {
+      const response = await fetch('https://quizy-ggoe.onrender.com/questions/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

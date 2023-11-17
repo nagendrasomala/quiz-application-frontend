@@ -23,7 +23,8 @@ const Landingpage = () => {
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:4000/user/register', {
+      //const response = await axios.post('http://localhost:4000/user/register', {
+      const response = await axios.post('https://quizy-ggoe.onrender.com/user/register', {
         name: username,
         email: emailSignUp,
         password: passwordSignUp,
@@ -49,7 +50,8 @@ const Landingpage = () => {
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:4000/user/login', {
+      //const response = await axios.post('http://localhost:4000/user/login', {
+      const response = await axios.post('https://quizy-ggoe.onrender.com/user/login', {
         email: emailSignIn,
         password: passwordSignIn,
       });

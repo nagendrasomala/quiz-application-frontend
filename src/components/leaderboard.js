@@ -6,7 +6,8 @@ const Leaderboard = () => {
 
   useEffect(() => {
     // Fetch user data from the API
-    axios.get('http://localhost:4000/user/getall')
+    //axios.get('http://localhost:4000/user/getall')
+    axios.get('https://quizy-ggoe.onrender.com/user/getall')
       .then(response => {
         setUsers(response.data);
       })
