@@ -89,26 +89,33 @@ const QuizPage = () => {
     }
   };
 
+const handleSubmitQuiz = async () => {
+  try {
+    // Calculate marks and score
+    const score = calculateMarksAndScore();
 
-  const handleSubmitQuiz = async () => {
+    // Prepare data to send to the backend
+    const quizData = {
+      student: userId,
+      name: usernames,
+      startTime: startTime,
+      endTime: endTime,
+      marks: marks, // Use the marks state here
+      score: finalScore, // Use the finalScore state here
+      // Add any other relevant data you need to send to the backend
+    };
 
-    const startTimeInSeconds = timeStringToSeconds(startTime);
-    const endTimeInSeconds = timeStringToSeconds(endTime);
-  
-    const timeDifferenceInSeconds = endTimeInSeconds - startTimeInSeconds;
-  
-    const scored = (marks*100) - timeDifferenceInSeconds;
-  
-    const userId = location.state.id;
-    //await axios.post(`http://localhost:4000/user/updateScore/${userId}`, {
-    await axios.post(`https://quizy-ggoe.onrender.com/user/updateScore/${userId}`, {
-      score: scored,
-      marks: marks,
-    });
-    navigate('/dashboard',{state: {id : userId }});
-    console.log('Score updated successfully');
-    console.log('Quiz Submitted!');
-  };
+    // Submit quiz data to the backend
+    const response = await axios.post(`http://localhost:4000/q/submit-quiz/${quizCode}`, quizData);
+    
+    // Handle the response from the backend if needed
+    console.log('Quiz submitted successfully:', response.data);
+  } catch (error) {
+    console.error('Error submitting quiz:', error);
+    // Handle the error if needed
+  }
+};
+
   
 
   return (

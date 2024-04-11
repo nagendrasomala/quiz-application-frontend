@@ -5,8 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-const Landingpage = () => {
-    const navigate = useNavigate();
+  const Landingpage = () => {
+  const navigate = useNavigate();
   const [isSignInFormOpen, setSignInFormOpen] = useState(false);
   const [isSignUpFormOpen, setSignUpFormOpen] = useState(true);
 
