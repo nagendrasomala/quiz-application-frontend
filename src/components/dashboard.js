@@ -116,7 +116,7 @@ const Dashboard = () => {
         </div>
       </nav>
       
-      <div className="xl:p-8 mt-10 p-4 flex  justify-center">
+      <div className="xl:p-8 mt-10 p-1 flex  justify-center">
         <div className="  h-1/2 w-11/12  flex flex-col  justify-center rounded-md">
           
             {participatedQuizzes.length > 0 ? (
