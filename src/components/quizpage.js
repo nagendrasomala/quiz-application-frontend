@@ -157,43 +157,16 @@ const QuizPage = () => {
     }
   };
 
-<<<<<<< HEAD
+
   const goToPreviousQuestion = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
     }
   };
-=======
-const handleSubmitQuiz = async () => {
-  try {
-    // Calculate marks and score
-    const score = calculateMarksAndScore();
 
-    // Prepare data to send to the backend
-    const quizData = {
-      student: userId,
-      name: usernames,
-      startTime: startTime,
-      endTime: endTime,
-      marks: marks, 
-      score: finalScore, 
-      
-    };
 
-  
-    //const response = await axios.post(`http://localhost:4000/q/submit-quiz/${quizCode}`, quizData);
-    const response = await axios.post(`https://quiz-application-backend-39mn.onrender.com/q/submit-quiz/${quizCode}`, quizData);
-    
-    // Handle the response from the backend if needed
-    console.log('Quiz submitted successfully:', response.data);
-  } catch (error) {
-    console.error('Error submitting quiz:', error);
-    // Handle the error if needed
-  }
-};
 
-  
->>>>>>> 6263ee1eadd7abf05b06278ac7645e2475d2c4b6
+
 
   const calculateMarksAndScore = () => {
     let newMarks = 0;
