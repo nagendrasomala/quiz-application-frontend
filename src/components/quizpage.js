@@ -175,13 +175,14 @@ const handleSubmitQuiz = async () => {
       name: usernames,
       startTime: startTime,
       endTime: endTime,
-      marks: marks, // Use the marks state here
-      score: finalScore, // Use the finalScore state here
-      // Add any other relevant data you need to send to the backend
+      marks: marks, 
+      score: finalScore, 
+      
     };
 
-    // Submit quiz data to the backend
-    const response = await axios.post(`http://localhost:4000/q/submit-quiz/${quizCode}`, quizData);
+  
+    //const response = await axios.post(`http://localhost:4000/q/submit-quiz/${quizCode}`, quizData);
+    const response = await axios.post(`https://quiz-application-backend-39mn.onrender.com/q/submit-quiz/${quizCode}`, quizData);
     
     // Handle the response from the backend if needed
     console.log('Quiz submitted successfully:', response.data);
