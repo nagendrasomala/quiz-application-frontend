@@ -1,0 +1,23 @@
+.excel-table {
+    overflow-x: auto;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    border: 1px solid #7a7878;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  th {
+    background-color: #848383;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  

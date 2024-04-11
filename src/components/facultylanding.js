@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-  const Landingpage = () => {
+  const FacultyLandingpage = () => {
   const navigate = useNavigate();
   const [isSignInFormOpen, setSignInFormOpen] = useState(false);
   const [isSignUpFormOpen, setSignUpFormOpen] = useState(true);
@@ -22,8 +22,8 @@ import { Link } from 'react-router-dom';
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      // const response = await axios.post('http://localhost:4000/s/sregister', {
-      const response = await axios.post('https://quiz-application-backend-39mn.onrender.com/s/sregister', {
+      // const response = await axios.post('http://localhost:4000/f/fregister', {
+        const response = await axios.post('https://quiz-application-backend-39mn.onrender.com/f/fregister', {
         name: username,
         email: emailSignUp,
         password: passwordSignUp,
@@ -48,8 +48,8 @@ import { Link } from 'react-router-dom';
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      //const response = await axios.post('http://localhost:4000/s/slogin', {
-      const response = await axios.post('https://quiz-application-backend-39mn.onrender.com/s/slogin', {
+      // const response = await axios.post('http://localhost:4000/f/flogin', {          
+      const response = await axios.post('https://quiz-application-backend-39mn.onrender.com/f/flogin', { 
         email: emailSignIn,
         password: passwordSignIn,
       });
@@ -57,13 +57,10 @@ import { Link } from 'react-router-dom';
       // Handle the response
       if (response.data.success) {
         // Sign-in successful
-        console.log(response.data)
         toast.success('Sign-in successful!');
         const userId = response.data.id;
-        console.log(userId+" it is in landing page")
-        const usernames = response.data.username;
-        console.log(usernames+" it is in landing page")
-        navigate('/dashboard',{state: {id : userId,name: usernames}});
+        console.log(userId)
+        navigate('/facultydashboard',{state: {id : userId }});
         
         // Example: history.push(`/next-page/${userId}`);
       } else {
@@ -92,13 +89,12 @@ import { Link } from 'react-router-dom';
         <div className="flex items-center">
           <p className="text-white md:text-2xl text-xl xl:text-3xl"> welcome to Quizy</p>
         </div>
-        <Link to="/faculty">
-          <button className="bg-orange-500 text-white hover:bg-orange-700 px-4 py-2 rounded focus:outline-none focus:shadow-outline">Faculty</button>
-        </Link>
+        
        
       </nav>
       <div className="flex items-center justify-center min-h-screen bg-zinc-900 p-6">
     <div className="card shadow-2xl h-1/2 md:w-1/2 xl:w-1/3 bg-zinc-800">
+        <h1 className='text-2xl text-white'>Faculty Page</h1>
       <div className="w-full">
         <button
           onClick={openSignInForm}
@@ -173,4 +169,4 @@ import { Link } from 'react-router-dom';
   );
 };
 
-export default Landingpage;
+export default FacultyLandingpage;

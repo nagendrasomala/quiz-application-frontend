@@ -7,6 +7,10 @@ import Dashboard from './components/dashboard';
 import QuizPage from './components/quizpage';
 import AddQuestionPage from './components/addquestions';
 import Leaderboard from './components/leaderboard';
+import FacultyLandingpage from './components/facultylanding';
+import FacultyDashboard from './components/facultydash';
+import CreateQuiz from './components/createquiz';
+import ViewData from './components/viewdata';
 
 function App() {
   return (
@@ -17,8 +21,12 @@ function App() {
           <Route path='/' element={<Landingpage/>}/>
           <Route path="/dashboard" element={<Dashboard/>} />
           <Route path="/quizpage" element={<QuizPage/>}/>
-          <Route path="/add123" element={<AddQuestionPage/>}/>
+          <Route path="/addquestions" element={<AddQuestionPage/>}/>
           <Route path='/leaderboard' element={<Leaderboard/>}/>
+          <Route path="/faculty" element={<FacultyLandingpage/>}/>
+          <Route path='/facultydashboard' element={<FacultyDashboard/>}/>
+          <Route path='/createquiz' element={<CreateQuiz/>}/>
+          <Route path='/viewdata' element={<ViewData/>}/>
         </Routes>
       </HashRouter>
     </div>
