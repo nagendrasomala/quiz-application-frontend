@@ -19,8 +19,8 @@ const ViewData = () => {
   // Function to fetch data from the backend API
   const fetchData = async () => {
     try {
-      // const response = await axios.get(`http://localhost:4000/q/participants/${userId}`);
-      const response = await axios.get(`https://quiz-application-backend-39mn.onrender.com/q/participants/${userId}`);
+      const response = await axios.get(`http://localhost:4000/q/participants/${userId}`);
+      //const response = await axios.get(`https://quiz-application-backend-39mn.onrender.com/q/participants/${userId}`);
       
       setQuizData(response.data);
       console.log(response.data);
@@ -32,8 +32,8 @@ const ViewData = () => {
   // Function to handle download button click
   const handleDownload = async () => {
     try {
-      //const response = await axios.post('http://localhost:4000/q/generateExcel', { quizData }, { responseType: 'arraybuffer' });
-      const response = await axios.post('https://quiz-application-backend-39mn.onrender.com/q/generateExcel', { quizData }, { responseType: 'arraybuffer' });
+      const response = await axios.post('http://localhost:4000/q/generateExcel', { quizData }, { responseType: 'arraybuffer' });
+      //const response = await axios.post('https://quiz-application-backend-39mn.onrender.com/q/generateExcel', { quizData }, { responseType: 'arraybuffer' });
       const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
@@ -56,7 +56,7 @@ const ViewData = () => {
           <p className="text-white md:text-2xl text-xl xl:text-3xl">{quizname} Data</p>
         </div>
         
-          <button className="bg-orange-500 text-white hover:bg-orange-700 px-4 py-2 rounded focus:outline-none focus:shadow-outline"onClick={handleDownload}>Download Excel</button>
+          <button className="bg-green-500 text-white hover:bg-green-700 px-4 py-2 rounded focus:outline-none focus:shadow-outline"onClick={handleDownload}>Download Excel</button>
         
        
       </nav>

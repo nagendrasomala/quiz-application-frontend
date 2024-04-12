@@ -22,8 +22,8 @@ import { Link } from 'react-router-dom';
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      // const response = await axios.post('http://localhost:4000/f/fregister', {
-        const response = await axios.post('https://quiz-application-backend-39mn.onrender.com/f/fregister', {
+      const response = await axios.post('http://localhost:4000/f/fregister', {
+      //const response = await axios.post('https://quiz-application-backend-39mn.onrender.com/f/fregister', {
         name: username,
         email: emailSignUp,
         password: passwordSignUp,
@@ -48,8 +48,8 @@ import { Link } from 'react-router-dom';
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      // const response = await axios.post('http://localhost:4000/f/flogin', {          
-      const response = await axios.post('https://quiz-application-backend-39mn.onrender.com/f/flogin', { 
+      const response = await axios.post('http://localhost:4000/f/flogin', {          
+      //const response = await axios.post('https://quiz-application-backend-39mn.onrender.com/f/flogin', { 
         email: emailSignIn,
         password: passwordSignIn,
       });
@@ -126,7 +126,7 @@ import { Link } from 'react-router-dom';
                 type="password"
                 placeholder="Password"
               />
-              <button className="bg-orange-500 text-white hover:bg-orange-700 hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full md:w-64">
+              <button className="bg-green-500 text-white hover:bg-green-700 hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full md:w-64">
                 Sign In
               </button>
             </form>
@@ -155,7 +155,7 @@ import { Link } from 'react-router-dom';
                 placeholder="Password"
               />
               
-              <button className="bg-orange-500 text-white hover:bg-orange-700 mt-10 hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full md:w-64">
+              <button className="bg-green-500 text-white hover:bg-green-700 mt-10 hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full md:w-64">
                 Sign Up
               </button>
             </form>

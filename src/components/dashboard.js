@@ -116,12 +116,12 @@ const Dashboard = () => {
         </div>
       </nav>
       
-      <div className="xl:p-8 mt-10 p-4 flex  justify-center">
-        <div className="  h-1/2 w-11/12  flex xl:flex-col  justify-center rounded-md">
+      <div className="xl:p-8 mt-10  flex  justify-center">
+        <div className="  h-1/2 w-11/12  flex flex-col  justify-center rounded-md">
           
             {participatedQuizzes.length > 0 ? (
               participatedQuizzes.map((quiz, index) => (
-                <div key={quiz._id} className=" h-1/2 w-11/12 full flex xl:flex-col flex-row justify-center   bg-zinc-800 p-1 xl:p-4 rounded-md m-4">
+                <div key={quiz._id} className=" h-1/2 w-11/12 full flex flex-col  justify-center   bg-zinc-800 p-2 xl:p-4 rounded-md m-4">
                 <div className='flex xl:flex-row flex-col justify-between '>
                 <div className=' flex flex-col justify-start items-start '>
                 <p className="text-white xl:text-3xl text-xl  ">Name : {quiz.quizName}</p>

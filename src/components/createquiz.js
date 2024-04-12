@@ -30,8 +30,8 @@ const handleSubmit = async (e) => {
     console.log(facultyId)
     e.preventDefault();
     try {
-      // const response = await axios.post('http://localhost:4000/q/create', {
-        const response = await axios.post('https://quiz-application-backend-39mn.onrender.com/q/create', {
+      const response = await axios.post('http://localhost:4000/q/create', {
+      //const response = await axios.post('https://quiz-application-backend-39mn.onrender.com/q/create', {
         facultyId,
         ...quizData,
         

@@ -21,8 +21,8 @@ const AddQuestionPage = () => {
 
   const fetchQuizData = async (quizId) => {
     try {
-      // const response = await fetch(`http://localhost:4000/q/${quizId}`);     
-      const response = await fetch(`https://quiz-application-backend-39mn.onrender.com/q/${quizId}`); 
+      const response = await fetch(`http://localhost:4000/q/${quizId}`);     
+      //const response = await fetch(`https://quiz-application-backend-39mn.onrender.com/q/${quizId}`); 
       const data = await response.json();
       console.log(data)
       console.log(data.questionsCount+" count");
@@ -42,8 +42,8 @@ const AddQuestionPage = () => {
 
   const addQuestion = async () => {
     try {
-      //const response = await fetch(`http://localhost:4000/q/add/${quizId}`, {
-      const response = await fetch(`https://quiz-application-backend-39mn.onrender.com/q/add/${quizId}`, {
+      const response = await fetch(`http://localhost:4000/q/add/${quizId}`, {
+      //const response = await fetch(`https://quiz-application-backend-39mn.onrender.com/q/add/${quizId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
