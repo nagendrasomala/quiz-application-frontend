@@ -18,8 +18,8 @@ const FacultyDashboard = () => {
     const userId = location.state?.id;
     const fetchQuizzes = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/q/fall/${userId}`); 
-        //const response = await axios.get(`https://quiz-application-backend-39mn.onrender.com/q/fall/${userId}`);
+        //const response = await axios.get(`http://localhost:4000/q/fall/${userId}`); 
+        const response = await axios.get(`https://quiz-application-backend-39mn.onrender.com/q/fall/${userId}`);
         setQuizzes(response.data);
         console.log(response.data);
         setIsLoading(false);

@@ -22,8 +22,8 @@ import { Link } from 'react-router-dom';
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:4000/f/fregister', {
-      //const response = await axios.post('https://quiz-application-backend-39mn.onrender.com/f/fregister', {
+      //const response = await axios.post('http://localhost:4000/f/fregister', {
+      const response = await axios.post('https://quiz-application-backend-39mn.onrender.com/f/fregister', {
         name: username,
         email: emailSignUp,
         password: passwordSignUp,
@@ -48,8 +48,8 @@ import { Link } from 'react-router-dom';
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:4000/f/flogin', {          
-      //const response = await axios.post('https://quiz-application-backend-39mn.onrender.com/f/flogin', { 
+      //const response = await axios.post('http://localhost:4000/f/flogin', {          
+      const response = await axios.post('https://quiz-application-backend-39mn.onrender.com/f/flogin', { 
         email: emailSignIn,
         password: passwordSignIn,
       });

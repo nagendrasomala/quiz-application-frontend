@@ -32,8 +32,8 @@ const QuizPage = () => {
       setUsernames(usernames);
 
       try {
-        const response = await axios.get(`http://localhost:4000/q/quizstart/${quizCode}`);
-        //const response = await axios.get(`https://quiz-application-backend-39mn.onrender.com/q/quizstart/${quizCode}`);
+        //const response = await axios.get(`http://localhost:4000/q/quizstart/${quizCode}`);
+        const response = await axios.get(`https://quiz-application-backend-39mn.onrender.com/q/quizstart/${quizCode}`);
         if (response.data && response.data.questions) {
           setQuizzes([response.data]);
           setQuizDataLoaded(true);
@@ -60,8 +60,8 @@ const QuizPage = () => {
       if (document.visibilityState === 'hidden' && !quizSubmitted) {
         try {
           alert('Switching tabs during the quiz may lead to automatic submission.');
-          const response = await axios.get(`http://localhost:4000/q/tabswitch/${quizCode}/${userId}`);
-          //const response = await axios.get(`https://quiz-application-backend-39mn.onrender.com/q/tabswitch/${quizCode}/${userId}`);
+          //const response = await axios.get(`http://localhost:4000/q/tabswitch/${quizCode}/${userId}`);
+          const response = await axios.get(`https://quiz-application-backend-39mn.onrender.com/q/tabswitch/${quizCode}/${userId}`);
           const currentTabSwitchCount = response.data.tabSwitchCount;
           
           setTabSwitchCount(currentTabSwitchCount - 1);
@@ -86,8 +86,8 @@ const QuizPage = () => {
 
   const getTabSwitchCount = async (quizCode) => {
     try {
-      const response = await axios.get(`http://localhost:4000/q/tabswitch/${quizCode}/${userId}`);
-      //const response = await axios.get(`https://quiz-application-backend-39mn.onrender.com/q/tabswitch/${quizCode}/${userId}`);
+      //const response = await axios.get(`http://localhost:4000/q/tabswitch/${quizCode}/${userId}`);
+      const response = await axios.get(`https://quiz-application-backend-39mn.onrender.com/q/tabswitch/${quizCode}/${userId}`);
       setTabSwitchCount(response.data.tabSwitchCount);
     } catch (error) {
       console.error('Error getting tab switch count:', error);
@@ -96,8 +96,8 @@ const QuizPage = () => {
 
   const updateTabSwitchCount = async (quizCode, tabSwitchCount) => {
     try {
-      await axios.put(`http://localhost:4000/q/tab-switch-count/${quizCode}/${userId}`, { tabSwitchCount });
-      //await axios.put(`https://quiz-application-backend-39mn.onrender.comq/tab-switch-count/${quizCode}/${userId}`, { tabSwitchCount });
+      //await axios.put(`http://localhost:4000/q/tab-switch-count/${quizCode}/${userId}`, { tabSwitchCount });
+      await axios.put(`https://quiz-application-backend-39mn.onrender.comq/tab-switch-count/${quizCode}/${userId}`, { tabSwitchCount });
     } catch (error) {
       console.error('Error updating tab switch count:', error);
     }
@@ -134,8 +134,8 @@ const QuizPage = () => {
     };
 
     try {
-      const response = await axios.post(`http://localhost:4000/q/submit-quiz/${quizCode}`, quizData);
-      //const response = await axios.post(`https://quiz-application-backend-39mn.onrender.com/q/submit-quiz/${quizCode}`, quizData);
+      //const response = await axios.post(`http://localhost:4000/q/submit-quiz/${quizCode}`, quizData);
+      const response = await axios.post(`https://quiz-application-backend-39mn.onrender.com/q/submit-quiz/${quizCode}`, quizData);
       console.log('Quiz submitted successfully:', response.data);
       navigate('/dashboard', { state: { id: userId, name: usernames } });
     } catch (error) {
