@@ -67,12 +67,12 @@ const Dashboard = () => {
     };
   
     try {
-      await axios.post(`http://localhost:4000/q/pcreate/${quizCode}`, participantData);
-      //await axios.post(`https://quiz-application-backend-39mn.onrender.com/q/pcreate/${quizCode}`, participantData);
+      //await axios.post(`http://localhost:4000/q/pcreate/${quizCode}`, participantData);
+      await axios.post(`https://quiz-application-backend-39mn.onrender.com/q/pcreate/${quizCode}`, participantData);
   
       
-      const response = await axios.get(`http://localhost:4000/q/gets/${quizCode}/${userId}`);
-      //const response = await axios.get(`https://quiz-application-backend-39mn.onrender.com/q/gets/${quizCode}/${userId}`);
+      //const response = await axios.get(`http://localhost:4000/q/gets/${quizCode}/${userId}`);
+      const response = await axios.get(`https://quiz-application-backend-39mn.onrender.com/q/gets/${quizCode}/${userId}`);
       const isParticipant = response.data.isParticipant;
   
       if (isParticipant) {
