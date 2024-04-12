@@ -22,8 +22,8 @@ const Dashboard = () => {
   const fetchParticipatedQuizzes = async () => {
     try {
       const userId = usersId;
-      const response = await axios.get(`http://localhost:4000/q/sall/${userId}`);
-      //const response = await axios.get(`https://quiz-application-backend-39mn.onrender.com/q/sall/${userId}`);
+      //const response = await axios.get(`http://localhost:4000/q/sall/${userId}`);
+      const response = await axios.get(`https://quiz-application-backend-39mn.onrender.com/q/sall/${userId}`);
       const quizzesData = response.data;
       setParticipatedQuizzes(quizzesData);
     } catch (error) {
@@ -108,7 +108,7 @@ const Dashboard = () => {
             />
             <button
               type="submit"
-              className="bg-orange-500 text-white hover:bg-orange-700 hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline   w-2/5 xl:w-2/6"
+              className="bg-green-500 text-white hover:bg-green-700 hover:text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline   w-2/5 xl:w-2/6"
             >
               Take Quiz
             </button>
