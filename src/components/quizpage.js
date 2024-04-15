@@ -26,18 +26,34 @@ const QuizPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       const { id: usersId, code: quizCode, name: usernames } = location.state;
-
+  
       setUserId(usersId);
       setQuizCode(quizCode);
       setUsernames(usernames);
-
+  
       try {
         const response = await axios.get(`https://quiz-application-backend-39mn.onrender.com/q/quizstart/${quizCode}`);
         if (response.data && response.data.questions) {
           setQuizzes([response.data]);
           setQuizDataLoaded(true);
-          setStartTime(new Date());
-          setEndTime(new Date(Date.now() + response.data.duration * 60000));
+  
+          const storedStartTime = localStorage.getItem('quizStartTime');
+          const storedDuration = localStorage.getItem('quizDuration');
+          
+          if (storedStartTime && storedDuration) {
+            const startTime = new Date(storedStartTime);
+            const duration = parseInt(storedDuration, 10);
+  
+            // Set start and end time based on stored values
+            setStartTime(startTime);
+            setEndTime(new Date(startTime.getTime() + duration * 60000));
+          } else {
+            const startTime = new Date();
+            setStartTime(startTime);
+            localStorage.setItem('quizStartTime', startTime);
+            localStorage.setItem('quizDuration', response.data.duration);
+            setEndTime(new Date(startTime.getTime() + response.data.duration * 60000));
+          }
         } else {
           console.error('Quiz data is not in the expected format:', response.data);
         }
@@ -45,11 +61,28 @@ const QuizPage = () => {
         console.error('Error fetching quiz data:', error);
       }
     };
-
+  
     if (location.state && location.state.code && !quizDataLoaded) {
       fetchData();
     }
   }, [location.state, quizDataLoaded]);
+  
+  useEffect(() => {
+    if (startTime && endTime) {
+      const interval = setInterval(() => {
+        const now = new Date();
+        if (now >= endTime && !quizSubmitted) {
+          clearInterval(interval);
+          handleSubmitQuiz();
+        } else {
+          setRemainingTime(Math.floor((endTime - now) / 1000));
+        }
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [startTime, endTime, quizSubmitted]);
+  
+  
 
   useEffect(() => {
     const handleVisibilityChange = async () => {
@@ -94,20 +127,7 @@ const QuizPage = () => {
     }
   };
 
-  useEffect(() => {
-    if (startTime && endTime) {
-      const interval = setInterval(() => {
-        const now = new Date();
-        if (now >= endTime && !quizSubmitted) {
-          clearInterval(interval);
-          handleSubmitQuiz();
-        } else {
-          setRemainingTime(Math.floor((endTime - now) / 1000));
-        }
-      }, 1000);
-      return () => clearInterval(interval);
-    }
-  }, [startTime, endTime, quizSubmitted]);
+
 
   const handleSubmitQuiz = async () => {
     setQuizSubmitted(true);
@@ -237,21 +257,22 @@ const QuizPage = () => {
                   <h2 className="text-white text-3xl">{quiz.title}</h2>
                   {quiz.questions.map((question, index) => (
                     <div
-                      className={`card shadow-md overflow-hidden  shadow-zinc-700 mt-4 xl:p-5 justify-start flex flex-col h-96 w-full xl:w-11/12 text-black items-start ${
+                      className={`card shadow-md   shadow-zinc-700 mt-4 xl:p-5 justify-start flex flex-col h-96 w-full xl:w-11/12 text-black items-start ${
                         index === currentQuestionIndex ? '' : 'hidden'
                       }`}
                       key={question._id}
                     >
-                      <div  className="w-full h-full  xl:p-5 mt-3 ">
-                        <div  className="w-full h-20  bg-zinc-400 p-5 rounded-lg overflow-clip  flex justify-start items-center">
+                      <div  className="w-full h-22  xl:p-5 mt-3 ">
+                        <div  className="w-full h-22   bg-zinc-400 p-5 rounded-lg overflow-clip  flex justify-start items-center">
                           <h3>{question.text}</h3>
                         </div>
                         <ul>
                           {question.options.map((option, optionIndex) => (
                             <div className="flex flex-col items-start justify-start" key={optionIndex}>
-                              <div  className="w-full h-5 rounded-lg bg-zinc-400 overflow-hidden p-5 mt-3 flex justify-start items-center">
+                              <div  className="w-full h-18  rounded-lg bg-zinc-400 overflow-y-scroll xl:overflow-hidden p-5 mt-3 flex justify-start items-center">
                                 <li className=''>
                                   <input
+                                  className=' '
                                     type="radio"
                                     id={`${quiz._id}-${question._id}-${optionIndex}`}
                                     name={`${quiz._id}-${question._id}`}
@@ -259,7 +280,7 @@ const QuizPage = () => {
                                     onChange={() => handleOptionClick(quiz._id, question._id, optionIndex)}
                                   />
                                   <label
-                                    className="ml-4 cursor-pointer justify-start items-start"
+                                    className="ml-4 overflow-x-scroll cursor-pointer justify-start items-start"
                                     htmlFor={`${quiz._id}-${question._id}-${optionIndex}`}
                                   >
                                     {option}
