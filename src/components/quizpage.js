@@ -250,10 +250,10 @@ const QuizPage = () => {
                 </div>
               ))}
           </div>
-          <div className="bg-zinc-700 p-4 rounded-xl xl:w-4/6 w-full">
+          <div className="bg-zinc-700 p-4 rounded-xl  overflow-y-scroll xl:w-4/6 w-full">
           {quizDataLoaded &&
               quizzes.map((quiz) => (
-                <div className="xl:-mt-10 w-full flex flex-col items-center -mt-5  xl:h-96" key={quiz._id}>
+                <div className="xl:-mt-10 w-full flex flex-col items-center -mt-5   xl:h-96" key={quiz._id}>
                   <h2 className="text-white text-3xl">{quiz.title}</h2>
                   {quiz.questions.map((question, index) => (
                     <div
