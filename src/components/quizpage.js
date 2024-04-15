@@ -148,6 +148,8 @@ const QuizPage = () => {
     try {
       const response = await axios.post(`https://quiz-application-backend-39mn.onrender.com/q/submit-quiz/${quizCode}`, quizData);
       console.log('Quiz submitted successfully:', response.data);
+      localStorage.removeItem('quizStartTime');
+      localStorage.removeItem('quizDuration');
       navigate('/dashboard', { state: { id: userId, name: usernames } });
     } catch (error) {
       toast.error('Already Submitted Quiz!!!');
